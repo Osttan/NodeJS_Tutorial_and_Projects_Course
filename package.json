@@ -4,7 +4,7 @@
   "description": "",
   "main": "./Section_3_Node_Tutorial/1-Intro.js",
   "scripts": {
-    "start": "nodemon ./Section_3_Node_Tutorial/app.js"
+    "start": "nodemon ./Section_4_Express/app.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,8 @@
   "homepage": "https://github.com/Osttan/NodeJS_Tutorial_and_Projects_Course#readme",
   "devDependencies": {
     "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
   }
 }
