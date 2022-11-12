@@ -1,16 +1,18 @@
 const express = require('express');
-const path = require('path');
 const app = express();
-
-// setup static and middleware
-app.use(express.static('./Section_4_Express/public'));
+const { products } = require('./data');
 
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './navbar-app/index.html'));
+  res.send('<h1>Home Page</h1><a href="/api/products">Products</a>');
 });
 
-app.all('*', (req, res) => {
-  res.status(404).send('Resource not found');
+app.get('/api/products', (req, res) => {
+  const newProducts = products.map(product => {
+    const { id, name, image } = product;
+    return { id, name, image };
+  });
+
+  res.json(newProducts);
 });
 
 app.listen(5000, () => {
