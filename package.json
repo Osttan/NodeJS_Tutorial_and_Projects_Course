@@ -4,7 +4,7 @@
   "description": "",
   "main": "./Section_3_Node_Tutorial/1-Intro.js",
   "scripts": {
-    "start": "nodemon ./Section_6_Task_Manager_API/starter/app.js"
+    "start": "nodemon ./Section_8_JWT_Basics/app.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,9 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "http-status-codes": "^2.2.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.2"
   }
 }
