@@ -22,6 +22,16 @@ const JobsSchema = new mongoose.Schema(
       ref: 'User',
       required: [true, 'Please provide an user'],
     },
+    jobType: {
+      type: String,
+      enum: ['full-time', 'part-time', 'remote', 'internship'],
+      default: 'full-time',
+    },
+    jobLocation: {
+      type: String,
+      default: 'my city',
+      required: true,
+    },
   },
   { timestamps: true }
 );

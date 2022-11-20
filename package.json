@@ -4,7 +4,8 @@
   "description": "",
   "main": "./Section_3_Node_Tutorial/1-Intro.js",
   "scripts": {
-    "start": "nodemon ./Section_9_Jobs_API/app.js"
+    "start": "node ./Section_10_Jobster_API/app.js",
+    "dev": "nodemon ./Section_10_Jobster_API/app.js"
   },
   "repository": {
     "type": "git",
