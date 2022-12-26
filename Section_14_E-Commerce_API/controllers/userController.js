@@ -3,6 +3,7 @@ const { StatusCodes } = require('http-status-codes');
 const CustomError = require('../errors');
 
 const getAllUsers = async (req, res) => {
+  console.log(req.user);
   const users = await User.find({ role: 'user' }).select('-password');
   res.status(StatusCodes.OK).json({ users });
 };
@@ -14,7 +15,9 @@ const getSingleUser = async (req, res) => {
   res.status(StatusCodes.OK).json({ user });
 };
 
-const showCurrentUser = async (req, res) => {};
+const showCurrentUser = async (req, res) => {
+  res.status(StatusCodes.OK).json({ user: req.user });
+};
 
 const updateUser = async (req, res) => {
   res.send('Atualiza o user');
