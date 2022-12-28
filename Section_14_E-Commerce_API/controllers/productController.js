@@ -1,21 +1,54 @@
-const createProduct = (req, res) => {
-  res.send('createProduct');
+const Product = require('../models/Product');
+const { StatusCodes } = require('http-status-codes');
+const CustomError = require('../errors');
+const { restart } = require('nodemon');
+
+const createProduct = async (req, res) => {
+  req.body.user = req.user.userId;
+  const product = await Product.create(req.body);
+  res.status(StatusCodes.CREATED).json({ product });
 };
 
-const getAllProducts = (req, res) => {
-  res.send('getAllProducts');
+const getAllProducts = async (req, res) => {
+  const products = await Product.find({});
+  res.status(StatusCodes.OK).json({ products, count: products.length });
 };
 
-const getSingleProduct = (req, res) => {
-  res.send('getSingleProduct');
+const getSingleProduct = async (req, res) => {
+  const { id: productId } = req.params;
+
+  const product = await Product.findOne({ _id: productId });
+
+  if (!product)
+    throw new CustomError.NotFoundError(`No product with id: ${productId}`);
+
+  res.status(StatusCodes.OK).json({ product });
 };
 
-const updateProduct = (req, res) => {
-  res.send('updateProduct');
+const updateProduct = async (req, res) => {
+  const { id: productId } = req.params;
+
+  const product = await Product.findOneAndUpdate({ _id: productId }, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  if (!product)
+    throw new CustomError.NotFoundError(`No product with id: ${productId}`);
+
+  res.status(StatusCodes.OK).json({ product });
 };
 
-const deleteProduct = (req, res) => {
-  res.send('deleteProduct');
+const deleteProduct = async (req, res) => {
+  const { id: productId } = req.params;
+
+  const product = await Product.findOne({ _id: productId });
+
+  if (!product)
+    throw new CustomError.NotFoundError(`No product with id: ${productId}`);
+
+  await product.remove();
+  res.status(StatusCodes.OK).json({ msg: 'Success! Product removed' });
 };
 
 const uploadImage = (req, res) => {
