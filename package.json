@@ -4,8 +4,8 @@
   "description": "",
   "main": "./Section_3_Node_Tutorial/1-Intro.js",
   "scripts": {
-    "start": "node ./Section_14_E-Commerce_API/app.js",
-    "dev": "nodemon ./Section_14_E-Commerce_API/app.js"
+    "start": "node ./Section_15_Auth_Workflow/server/app.js",
+    "dev": "nodemon ./Section_15_Auth_Workflow/server/app.js"
   },
   "repository": {
     "type": "git",
