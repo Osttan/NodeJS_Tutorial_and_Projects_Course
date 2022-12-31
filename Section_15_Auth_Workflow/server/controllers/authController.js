@@ -30,7 +30,25 @@ const register = async (req, res) => {
     verificationToken,
   });
 
-  await sendEmail();
+  const origin = 'http://localhost:3000';
+
+  // const tempOrigin = req.get('origin');
+  // console.log('Origin: ' + tempOrigin);
+  // const protocol = req.protocol;
+  // console.log('Protocol: ' + protocol);
+  // const host = req.get('host');
+  // console.log('Host: ' + host);
+  // const forwardedHost = req.get('x-forwarded-host');
+  // const forwardedProtocol = req.get('x-forwarded-proto');
+  // console.log('Forwarded Host: ' + forwardedHost);
+  // console.log('Forwarded Protocol: ' + forwardedProtocol);
+
+  await sendVerificationEmail({
+    name: user.name,
+    email: user.email,
+    verificationToken: user.verificationToken,
+    origin,
+  });
   // send verification token back only while testing in postman
   res.status(StatusCodes.CREATED).json({
     msg: 'Success! Please check your e-mail to verify account',
